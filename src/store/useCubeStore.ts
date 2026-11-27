@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { applyMove, createSolvedCube, CubeState, Move, parseAlgorithm } from '../engine';
+import { applyMove, createTrainerCube, CubeState, Move, parseAlgorithm } from '../engine';
 
 interface CubeStore {
   /** Trạng thái logic của khối (nguồn sự thật). */
@@ -8,6 +8,8 @@ interface CubeStore {
   current: Move | null;
   /** Hàng đợi các nước chờ chạy. */
   queue: Move[];
+  /** Ký hiệu các nước đã áp xong kể từ lần setCube/reset gần nhất. */
+  history: string[];
   /** Thời gian (ms) cho 1 lần xoay 90°. */
   speedMs: number;
 
@@ -15,6 +17,8 @@ interface CubeStore {
   enqueue: (input: string | Move[]) => void;
   /** Gọi khi animation `current` xong: áp nước vào state, lấy nước kế tiếp. */
   commit: () => void;
+  /** Xoá hàng đợi nhưng để nước đang chạy hoàn tất (dùng cho nút tạm dừng). */
+  clearQueue: () => void;
   /** Đặt thẳng một trạng thái (không animation), xoá hàng đợi. */
   setCube: (state: CubeState) => void;
   reset: () => void;
@@ -22,10 +26,11 @@ interface CubeStore {
 }
 
 export const useCubeStore = create<CubeStore>((set, get) => ({
-  state: createSolvedCube(),
+  state: createTrainerCube(),
   current: null,
   queue: [],
   speedMs: 300,
+  history: [],
 
   enqueue: (input) => {
     const moves = typeof input === 'string' ? parseAlgorithm(input) : input;
@@ -43,10 +48,16 @@ export const useCubeStore = create<CubeStore>((set, get) => ({
     const { current, queue, state } = get();
     if (!current) return;
     const [next, ...rest] = queue;
-    set({ state: applyMove(state, current), current: next ?? null, queue: rest });
+    set({
+      state: applyMove(state, current),
+      current: next ?? null,
+      queue: rest,
+      history: [...get().history, current.notation],
+    });
   },
 
-  setCube: (state) => set({ state, current: null, queue: [] }),
-  reset: () => set({ state: createSolvedCube(), current: null, queue: [] }),
+  clearQueue: () => set({ queue: [] }),
+  setCube: (state) => set({ state, current: null, queue: [], history: [] }),
+  reset: () => set({ state: createTrainerCube(), current: null, queue: [], history: [] }),
   setSpeed: (ms) => set({ speedMs: ms }),
 }));

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {
-  applyMove, applyMoves, createSolvedCube, generateScramble, parseAlgorithm,
+  applyMove, applyMoves, createSolvedCube, createTrainerCube, generateScramble, parseAlgorithm,
 } from '../../../engine';
 import { cubieQuaternion } from '../cubieMath';
 import { useCubeStore } from '../../../store/useCubeStore';
@@ -66,7 +66,7 @@ describe('useCubeStore', () => {
     useCubeStore.getState().commit();
     expect(useCubeStore.getState().current).toBeNull();
     expect(useCubeStore.getState().queue).toHaveLength(0);
-    expect(useCubeStore.getState().state).toEqual(applyMoves(home, parseAlgorithm("R U R'")));
+    expect(useCubeStore.getState().state).toEqual(applyMoves(createTrainerCube(), parseAlgorithm("R U R'")));
   });
   it('enqueue thêm khi đang chạy thì xếp hàng', () => {
     useCubeStore.getState().enqueue('R');

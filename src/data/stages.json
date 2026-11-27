@@ -1,0 +1,42 @@
+{
+  "cross": {
+    "title": "Cross",
+    "letter": "C",
+    "goal": "Ghép 4 cạnh trắng quanh tâm trắng ở mặt đáy, mỗi cạnh trùng màu với tâm bên cạnh.",
+    "tips": [
+      "Dành vài giây quan sát trước khi xoay: lên kế hoạch cả 4 cạnh.",
+      "Cross luôn giải được trong tối đa 8 nước. Nút \"Hiện đáp án\" cho lời giải ngắn nhất.",
+      "Giải cross ở mặt đáy để vừa làm vừa nhìn được các cặp F2L."
+    ]
+  },
+  "f2l": {
+    "title": "F2L",
+    "letter": "F",
+    "goal": "Ghép cặp góc + cạnh rồi đưa vào rãnh, hoàn thành 2 tầng đầu. Có 41 case.",
+    "tips": [
+      "Case luyện ở rãnh trước-phải. Hãy xoay cả khối để luyện các rãnh khác.",
+      "Thuật toán do máy tìm theo hướng ngắn nhất, ưu tiên chỉ dùng R và U.",
+      "Trước tiên hãy hiểu cặp nằm ở đâu, sau đó mới nhớ thuật toán."
+    ]
+  },
+  "oll": {
+    "title": "OLL",
+    "letter": "O",
+    "goal": "Làm cả mặt trên (vàng) cùng một màu, chưa cần đúng vị trí. Có 57 case.",
+    "tips": [
+      "Nhận diện case bằng hình dạng các mảnh vàng, kể cả các mảnh nhìn ra mặt bên.",
+      "Học trước nhóm chữ thập (Sune, Anti-Sune, H, Pi...) vì gặp nhiều nhất.",
+      "Có thể phải xoay U trước khi áp thuật toán."
+    ]
+  },
+  "pll": {
+    "title": "PLL",
+    "letter": "P",
+    "goal": "Hoán vị các mảnh lớp trên về đúng chỗ để hoàn thành khối. Có 21 case.",
+    "tips": [
+      "Nhận diện bằng các cặp màu giống nhau ở mặt bên (headlights, khối 3...).",
+      "Có thể cần xoay U trước và sau thuật toán (AUF).",
+      "Bắt đầu với nhóm chỉ hoán vị cạnh: Ua, Ub, H, Z."
+    ]
+  }
+}

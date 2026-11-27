@@ -55,19 +55,21 @@ export function createSolvedCube(colors: Record<Face, Color> = DEFAULT_COLORS): 
   return { cubies };
 }
 
+/** Áp một nước xoay lên một cubie (trả về cubie mới, hoặc chính nó nếu không bị ảnh hưởng). */
+export function moveCubie(c: Cubie, move: Move): Cubie {
+  if (!move.layers.includes(c.position[axisIndex(move.axis)])) return c;
+  return {
+    position: rotateVec(c.position, move.axis, move.turns),
+    stickers: c.stickers.map((s) => ({
+      normal: rotateVec(s.normal, move.axis, move.turns),
+      color: s.color,
+    })),
+  };
+}
+
 /** Áp một nước xoay, trả về state mới (không sửa state cũ). */
 export function applyMove(state: CubeState, move: Move): CubeState {
-  const cubies = state.cubies.map((c) => {
-    if (!move.layers.includes(c.position[axisIndex(move.axis)])) return c;
-    return {
-      position: rotateVec(c.position, move.axis, move.turns),
-      stickers: c.stickers.map((s) => ({
-        normal: rotateVec(s.normal, move.axis, move.turns),
-        color: s.color,
-      })),
-    };
-  });
-  return { cubies };
+  return { cubies: state.cubies.map((c) => moveCubie(c, move)) };
 }
 
 export function applyMoves(state: CubeState, moves: Move[]): CubeState {

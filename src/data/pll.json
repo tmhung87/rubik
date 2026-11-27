@@ -1,0 +1,170 @@
+[
+ {
+  "id": "pll-aa",
+  "name": "Aa-perm",
+  "group": "Corners",
+  "algs": [
+   "x R' U R' D2 R U' R' D2 R2 x'"
+  ]
+ },
+ {
+  "id": "pll-ab",
+  "name": "Ab-perm",
+  "group": "Corners",
+  "algs": [
+   "x R2 D2 R U R' D2 R U' R x'"
+  ]
+ },
+ {
+  "id": "pll-e",
+  "name": "E-perm",
+  "group": "Corners",
+  "algs": [
+   "x' R U' R' D R U R' D' R U R' D R U' R' D' x"
+  ]
+ },
+ {
+  "id": "pll-f",
+  "name": "F-perm",
+  "group": "Adjacent",
+  "algs": [
+   "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R"
+  ]
+ },
+ {
+  "id": "pll-ga",
+  "name": "Ga-perm",
+  "group": "G",
+  "algs": [
+   "R2 U R' U R' U' R U' R2 U' D R' U R D'"
+  ]
+ },
+ {
+  "id": "pll-gb",
+  "name": "Gb-perm",
+  "group": "G",
+  "algs": [
+   "R' U' R U D' R2 U R' U R U' R U' R2 D"
+  ]
+ },
+ {
+  "id": "pll-gc",
+  "name": "Gc-perm",
+  "group": "G",
+  "algs": [
+   "R2 U' R U' R U R' U R2 U D' R U' R' D"
+  ]
+ },
+ {
+  "id": "pll-gd",
+  "name": "Gd-perm",
+  "group": "G",
+  "algs": [
+   "R U R' U' D R2 U' R U' R' U R' U R2 D'"
+  ]
+ },
+ {
+  "id": "pll-h",
+  "name": "H-perm",
+  "group": "Edges",
+  "algs": [
+   "M2 U M2 U2 M2 U M2"
+  ]
+ },
+ {
+  "id": "pll-ja",
+  "name": "Ja-perm",
+  "group": "Adjacent",
+  "algs": [
+   "x R2 F R F' R U2 r' U r U2 x'"
+  ]
+ },
+ {
+  "id": "pll-jb",
+  "name": "Jb-perm",
+  "group": "Adjacent",
+  "algs": [
+   "R U R' F' R U R' U' R' F R2 U' R'"
+  ]
+ },
+ {
+  "id": "pll-na",
+  "name": "Na-perm",
+  "group": "Diagonal",
+  "algs": [
+   "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'"
+  ]
+ },
+ {
+  "id": "pll-nb",
+  "name": "Nb-perm",
+  "group": "Diagonal",
+  "algs": [
+   "R' U R U' R' F' U' F R U R' F R' F' R U' R"
+  ]
+ },
+ {
+  "id": "pll-ra",
+  "name": "Ra-perm",
+  "group": "Adjacent",
+  "algs": [
+   "R U' R' U' R U R D R' U' R D' R' U2 R'"
+  ]
+ },
+ {
+  "id": "pll-rb",
+  "name": "Rb-perm",
+  "group": "Adjacent",
+  "algs": [
+   "R' U2 R U2 R' F R U R' U' R' F' R2"
+  ]
+ },
+ {
+  "id": "pll-t",
+  "name": "T-perm",
+  "group": "Adjacent",
+  "algs": [
+   "R U R' U' R' F R2 U' R' U' R U R' F'"
+  ]
+ },
+ {
+  "id": "pll-ua",
+  "name": "Ua-perm",
+  "group": "Edges",
+  "algs": [
+   "M2 U M U2 M' U M2"
+  ]
+ },
+ {
+  "id": "pll-ub",
+  "name": "Ub-perm",
+  "group": "Edges",
+  "algs": [
+   "M2 U' M U2 M' U' M2"
+  ]
+ },
+ {
+  "id": "pll-v",
+  "name": "V-perm",
+  "group": "Diagonal",
+  "algs": [
+   "R' U R' U' y R' F' R2 U' R' U R' F R F y'"
+  ]
+ },
+ {
+  "id": "pll-y",
+  "name": "Y-perm",
+  "group": "Diagonal",
+  "algs": [
+   "F R U' R' U' R U R' F' R U R' U' R' F R F'"
+  ]
+ },
+ {
+  "id": "pll-z",
+  "name": "Z-perm",
+  "group": "Edges",
+  "algs": [
+   "M' U M2 U M2 U M' U2 M2"
+  ]
+ }
+]

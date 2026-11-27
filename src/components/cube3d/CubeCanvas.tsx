@@ -14,12 +14,12 @@ const CAMERA: Record<Stage, [number, number, number]> = {
 };
 
 /**
- * Canvas 3D. OrbitControls lo cử chỉ: 1 ngón vuốt để xoay, 2 ngón chụm để zoom
+ * Canvas 3D (flat = không tone mapping, giữ đúng màu sticker). OrbitControls lo cử chỉ: 1 ngón vuốt để xoay, 2 ngón chụm để zoom
  * (chuột: kéo để xoay, lăn để zoom).
  */
 export function CubeCanvas({ stage = 'oll' }: { stage?: Stage }) {
   return (
-    <Canvas camera={{ position: CAMERA[stage], fov: 45 }} dpr={[1, 2]} style={{ touchAction: 'none' }}>
+    <Canvas flat camera={{ position: CAMERA[stage], fov: 45 }} dpr={[1, 2]} style={{ touchAction: 'none' }}>
       <Cube3D />
       <OrbitControls enablePan={false} enableDamping minDistance={5} maxDistance={16} />
     </Canvas>

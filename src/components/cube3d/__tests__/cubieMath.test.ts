@@ -1,12 +1,13 @@
 import * as THREE from 'three';
 import {
-  applyMove, applyMoves, createSolvedCube, createTrainerCube, generateScramble, parseAlgorithm,
+  applyMove, applyMoves, createTrainerCube, generateScramble, parseAlgorithm,
 } from '../../../engine';
 import { cubieQuaternion } from '../cubieMath';
 import { useCubeStore } from '../../../store/useCubeStore';
+import { HOME_CUBE } from '../home';
 
 const v = (a: number[]) => new THREE.Vector3(a[0], a[1], a[2]);
-const home = createSolvedCube();
+const home = HOME_CUBE;
 
 describe('cubieQuaternion', () => {
   it('đưa sticker home về đúng hướng hiện tại sau scramble', () => {
@@ -78,5 +79,37 @@ describe('useCubeStore', () => {
     useCubeStore.getState().reset();
     expect(useCubeStore.getState().current).toBeNull();
     expect(useCubeStore.getState().queue).toHaveLength(0);
+  });
+});
+
+
+describe('màu hiển thị khớp trạng thái engine (hồi quy lỗi lệch bảng màu)', () => {
+  const NAME: Record<string, string> = { '0,1,0': 'U', '0,-1,0': 'D', '1,0,0': 'R', '-1,0,0': 'L', '0,0,1': 'F', '0,0,-1': 'B' };
+  const EXPECTED: Record<string, string> = { U: 'yellow', D: 'white', F: 'green', B: 'blue', R: 'orange', L: 'red' };
+
+  // Cube3D vẽ mỗi sticker bằng: màu của sticker gốc, hướng = hướng gốc xoay bởi cubieQuaternion
+  function drawn(state: ReturnType<typeof createTrainerCube>) {
+    const out = new Map<string, string>();
+    state.cubies.forEach((c, i) => {
+      const q = cubieQuaternion(home.cubies[i], c);
+      for (const hs of home.cubies[i].stickers) {
+        const n = v(hs.normal).applyQuaternion(q).round();
+        out.set(`${c.position.join(',')}|${n.x},${n.y},${n.z}`, hs.color);
+      }
+    });
+    return out;
+  }
+
+  it('khối đã giải: mỗi mặt đúng màu (vàng trên, trắng dưới, xanh lá trước, cam phải)', () => {
+    for (const [key, color] of drawn(createTrainerCube())) {
+      expect(color).toBe(EXPECTED[NAME[key.split('|')[1]]]);
+    }
+  });
+  it('sau scramble: hình vẽ = trạng thái engine, từng sticker', () => {
+    const s = applyMoves(createTrainerCube(), parseAlgorithm(generateScramble(40)));
+    const d = drawn(s);
+    for (const c of s.cubies) for (const st of c.stickers) {
+      expect(d.get(`${c.position.join(',')}|${st.normal.join(',')}`)).toBe(st.color);
+    }
   });
 });

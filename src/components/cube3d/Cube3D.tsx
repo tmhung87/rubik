@@ -3,10 +3,11 @@
 import React, { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
-import { axisIndex, createSolvedCube, CubeState, Vec3 } from '@/engine';
+import { axisIndex, CubeState, Vec3 } from '@/engine';
 import { useCubeStore } from '@/store/useCubeStore';
 import { BODY_HEX, STICKER_HEX } from './colors';
 import { cubieQuaternion } from './cubieMath';
+import { HOME_CUBE } from './home';
 
 const BODY_SIZE = 0.96;
 const STICKER_SIZE = 0.86;
@@ -32,7 +33,7 @@ function Sticker({ normal, color }: { normal: Vec3; color: string }) {
   return (
     <mesh position={position} quaternion={quaternion}>
       <planeGeometry args={[STICKER_SIZE, STICKER_SIZE]} />
-      <meshBasicMaterial color={color} />
+      <meshBasicMaterial color={color} toneMapped={false} />
     </mesh>
   );
 }
@@ -45,7 +46,7 @@ function Sticker({ normal, color }: { normal: Vec3; color: string }) {
  *    một góc theo tiến độ animation. Xong thì gọi commit() để cập nhật state.
  */
 export function Cube3D() {
-  const home = useMemo(() => createSolvedCube(), []);
+  const home = HOME_CUBE;
   const groups = useRef<(THREE.Group | null)[]>([]);
 
   // Cache vị trí/hướng nghỉ, chỉ tính lại khi state đổi
@@ -106,7 +107,7 @@ export function Cube3D() {
         >
           <mesh>
             <boxGeometry args={[BODY_SIZE, BODY_SIZE, BODY_SIZE]} />
-            <meshBasicMaterial color={BODY_HEX} />
+            <meshBasicMaterial color={BODY_HEX} toneMapped={false} />
           </mesh>
           {c.stickers.map((st, j) => (
             <Sticker key={j} normal={st.normal} color={STICKER_HEX[st.color]} />

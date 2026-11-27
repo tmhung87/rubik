@@ -1,0 +1,44 @@
+:root {
+  --bg: #1b1d23;
+  --btn: #2c303a;
+  --btn-active: #3c4250;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: #fff;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  overscroll-behavior: none; /* chặn kéo-để-tải-lại khi vuốt khối */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.canvas { flex: 1; min-height: 0; touch-action: none; }
+
+.controls { padding: 8px; display: grid; gap: 8px; }
+.row { display: flex; gap: 8px; }
+.row > button { flex: 1; }
+
+.btn {
+  background: var(--btn);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 600;
+  touch-action: manipulation;
+}
+.btn:active { background: var(--btn-active); }
